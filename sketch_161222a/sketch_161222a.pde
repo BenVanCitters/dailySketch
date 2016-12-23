@@ -1,7 +1,7 @@
-float[][] points = new float[4][3];
+float[][] points = new float[150][3];
 float[] jitterOffSets = new float[points.length];
 int breakIndex = points.length-1;
-float zSpacing = 470;
+float zSpacing = 120;
 float circumference = 1000;
 
 void setup()
@@ -11,7 +11,7 @@ void setup()
   for(int i = 0; i < points.length; i++)
   {
     points[i][2] = -i*zSpacing;
-    jitterOffSets[i] = random(0);
+    jitterOffSets[i] = random(60);
   }
 }
 
@@ -22,12 +22,12 @@ void draw()
   for(int i = 0; i < points.length; i++)
   {
     float pctThru = i * 1.f / (points.length-1);
-    points[i][2] += 1;
+    points[i][2] += 59;
     boolean b = false;
     if(points[i][2] > 0) 
     {
       points[i][2] -= points.length*zSpacing;
-      if(!b)
+//      if(!b)
       {
         breakIndex = i;
         b = true;
@@ -36,6 +36,7 @@ void draw()
       
     }
     float scl = points[i][2]/(zSpacing*points.length);
+    scl*=(1+sin(tm))/2;
     points[i][0] = scl*(circumference)*cos(tm+pctThru*TWO_PI);
     points[i][1] = scl*(circumference)*sin(tm+pctThru*TWO_PI);
   }
@@ -46,21 +47,21 @@ void draw()
   perspective(PI/3.0, width/height, 0.01, 1000000);
   
   background(0);
-//  lights();
-//  noStroke();
-  stroke(255);
+  lights();
+  noStroke();
+//  stroke(255);
   noFill();
   translate(width/2,height/2,0);
-  for(int i = 0; i < points.length-1; i++)
+  for(int i = 0; i < points.length; i++)
   {
     float tPercent = i*1.f/points.length;
     float c = -points[i][2]/(zSpacing*points.length);
-//    fill(255*c);
+    fill(255*c);
     beginShape(TRIANGLE_STRIP);
-    int edgeCount = 7;
+    int edgeCount = 40;
     float tunnelRadius = 800.f;
     
-    if(breakIndex != i || !(breakIndex == (points.length-1)) && i==0)
+    if(breakIndex != i)//|| !(breakIndex == (points.length-1)) && i==0)
     {
       for(int j = 0; j < edgeCount+1; j++)
       {
@@ -75,14 +76,19 @@ void draw()
                 points[i][2] );
                 
         //index to connect the last to
-        int nextIndex = (i+1)%(points.length-1);
+        int nextIndex = (i+1)%(points.length);
         scl = 1+points[nextIndex][2]/(zSpacing*points.length);
         float nextRadius = scl*(jitterOffSets[nextIndex]+tunnelRadius);
         vertex( points[nextIndex][0]+nextRadius*cos(curRad), 
                 points[nextIndex][1]+nextRadius*sin(curRad), 
                 points[nextIndex][2] );
       }
+      
     }
+//    else
+//      {
+//        println("not drawing: " + i);
+//      }
     endShape();
   }
 }
