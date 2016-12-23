@@ -1,64 +1,88 @@
-float[][] points = new float[40][3];
-float zSpacing = 5;
+float[][] points = new float[4][3];
+float[] jitterOffSets = new float[points.length];
+int breakIndex = points.length-1;
+float zSpacing = 470;
 float circumference = 1000;
 
 void setup()
 {
   size(500,500,OPENGL);
-  float tm = millis()/1000.f;
+  
   for(int i = 0; i < points.length; i++)
   {
-    points[i][0] = circumference*cos(tm+i/100.f);
-    points[i][1] = circumference*sin(tm+i/100.f);
     points[i][2] = -i*zSpacing;
+    jitterOffSets[i] = random(0);
   }
 }
 
 void draw()
 {
   //update
-  int breakIndex = points.length-1;
+  float tm = millis()/90000.f;
   for(int i = 0; i < points.length; i++)
   {
+    float pctThru = i * 1.f / (points.length-1);
     points[i][2] += 1;
+    boolean b = false;
     if(points[i][2] > 0) 
     {
       points[i][2] -= points.length*zSpacing;
-      breakIndex = i;
+      if(!b)
+      {
+        breakIndex = i;
+        b = true;
+        println(breakIndex);
+      }
+      
     }
     float scl = points[i][2]/(zSpacing*points.length);
-    points[i][0] = scl*circumference*cos(i/100.f);
-    points[i][1] = scl*circumference*sin(i/100.f);
+    points[i][0] = scl*(circumference)*cos(tm+pctThru*TWO_PI);
+    points[i][1] = scl*(circumference)*sin(tm+pctThru*TWO_PI);
   }
   
   //draw
+  //set far plane way out.
+  float cameraZ = ((height/2.0) / tan(PI*60.0/360.0));
+  perspective(PI/3.0, width/height, 0.01, 1000000);
+  
   background(0);
-  lights();
-  noStroke();
-//  stroke(255);
-//  noFill();
-  translate(width/2,height/2,-500);
-//  beginShape();
+//  lights();
+//  noStroke();
+  stroke(255);
+  noFill();
+  translate(width/2,height/2,0);
   for(int i = 0; i < points.length-1; i++)
   {
+    float tPercent = i*1.f/points.length;
+    float c = -points[i][2]/(zSpacing*points.length);
+//    fill(255*c);
     beginShape(TRIANGLE_STRIP);
-    int edgeCount = 10;
-    float tunnelRadius = 500.f;
-    for(int j = 0; j < edgeCount; j++)
+    int edgeCount = 7;
+    float tunnelRadius = 800.f;
+    
+    if(breakIndex != i || !(breakIndex == (points.length-1)) && i==0)
     {
-      float curRad = j*TWO_PI/(edgeCount-1);
-      vertex( points[i][0]+tunnelRadius*cos(curRad), 
-              points[i][1]+tunnelRadius*sin(curRad), 
-              points[i][2] );
-      int nextIndex = (i+1)%points.length;
-      if(breakIndex == 0)
-        nextIndex = i+1;
-      vertex( points[nextIndex][0]+tunnelRadius*cos(curRad), 
-              points[nextIndex][1]+tunnelRadius*sin(curRad), 
-              points[nextIndex][2] );
+      for(int j = 0; j < edgeCount+1; j++)
+      {
+        //current radian
+        float curRad = j*TWO_PI/(edgeCount);
+        //depth scaling
+        float scl = 1+points[i][2]/(zSpacing*points.length);   
+        //radius of the tunnel
+        float curRadius = scl*(jitterOffSets[i]+tunnelRadius); 
+        vertex( points[i][0]+curRadius*cos(curRad), 
+                points[i][1]+curRadius*sin(curRad), 
+                points[i][2] );
+                
+        //index to connect the last to
+        int nextIndex = (i+1)%(points.length-1);
+        scl = 1+points[nextIndex][2]/(zSpacing*points.length);
+        float nextRadius = scl*(jitterOffSets[nextIndex]+tunnelRadius);
+        vertex( points[nextIndex][0]+nextRadius*cos(curRad), 
+                points[nextIndex][1]+nextRadius*sin(curRad), 
+                points[nextIndex][2] );
+      }
     }
     endShape();
-//    vertex( points[i][0], points[i][1], points[i][2] );
   }
-  endShape();
 }
