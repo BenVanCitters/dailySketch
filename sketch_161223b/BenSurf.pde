@@ -2,7 +2,7 @@
   PGraphics pg;
   class BenSurf
 {
-  float opacity = 30;
+  float opacity = 150;
   float[] camRotVel= {  1, 1, 1 };
   float[] camRotVec= { 1, 1, 1 };
 
@@ -40,7 +40,7 @@
       pg.translate(width/2, height/2, 0);
       pg.fill(255);
       pg.noStroke();
-      pg.sphereDetail(15, 9);
+//      pg.sphereDetail(15, 9);
       pg.sphere(200);
     pg.popMatrix();
   }

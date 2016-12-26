@@ -1,6 +1,6 @@
 long lastMillis = 0;
 BenLight[] lights = new BenLight[8];
-BenSurf[] bSurfs  = new BenSurf[206];
+BenSurf[] bSurfs  = new BenSurf[5];
 void setup()
 {
   size(500,500,P3D);
