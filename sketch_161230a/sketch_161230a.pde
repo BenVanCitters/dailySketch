@@ -14,10 +14,14 @@ void draw()
     float sz = width * pct;
     pushMatrix();
     float rotateAmt = cos( millis()/3333.f ) * TWO_PI; 
-      rotate(rotateAmt * pct/(4*sin(millis()/1000.f)));
-      translate(-sz/2,-sz/2);
+      rotate(rotateAmt * pct/(4*sin(millis()/7997.f)));
+      translate(-sz/2*sin(millis()/3000.f),
+                -sz/2*sin(13+millis()/2777.f));
       noFill();
-      rect(0,0,sz,sz);
+//      ellipse(0,0,sz*sin(millis()/5555.f+97),
+//      sz*sin(millis()/1212.f+51));
+rect(0,0,sz*sin(millis()/5555.f+97),
+      sz*sin(millis()/1212.f+51));
     popMatrix();  
   }
 }
