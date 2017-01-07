@@ -1,54 +1,43 @@
-ShapeHole shp;// = new ShapeHole();
-
+ShapeHole triShp;// = new ShapeHole();
+ShapeHole circShp;
+ShapeHole sqrShp;
 void setup()
 {
-  size(500,500);
+  size(500,500,P2D);
+  float[][] outsideVerts = createCircShape(200,4);
   
-  float[][] outsideVerts = new float[4][2];
-  for(int i = 0; i < outsideVerts.length; i++)
-  {
-    float piPlace = TWO_PI/outsideVerts.length;
-    float curRadians = i*piPlace;
-    float radius = 200;
-    outsideVerts[i][0] = radius*cos(curRadians);
-    outsideVerts[i][1] = radius*sin(curRadians);
-  }
-  
-  float[][] insideVerts = new float[3][2];
-  for(int i = 0; i < insideVerts.length; i++)
-  {
-    float piPlace = TWO_PI/insideVerts.length;
-    float curRadians = i*piPlace;
-    float radius = 100;
-    insideVerts[i][0] = radius*cos(curRadians);
-    insideVerts[i][1] = radius*sin(curRadians);
-  }
-  
-  shp = new ShapeHole(outsideVerts,insideVerts,50);
+  triShp = new ShapeHole(outsideVerts,createCircShape(100,3),1000);
+  sqrShp = new ShapeHole(outsideVerts,createCircShape(100,4),1000);
+  circShp = new ShapeHole(outsideVerts,createCircShape(100,1000),1000);
 }
-
+//radius-based vertex creator helper function
+float[][] createCircShape(float radius, int vertCount)
+{
+  float[][] insideCircVerts = new float[vertCount][2];
+  
+  float piPlace = TWO_PI/insideCircVerts.length;
+  for(int i = 0; i < insideCircVerts.length; i++)
+  {
+    float curRadians = HALF_PI/2+i*piPlace;
+    insideCircVerts[i][0] = radius*cos(curRadians);
+    insideCircVerts[i][1] = radius*sin(curRadians);
+  }
+  return insideCircVerts;
+}
 void draw()
 {
   background(255);
   translate(width/2,height/2);
-//    for(int i = 0; i < shp.outsideVerts.length; i++)
-//  {
-//    stroke(255,0,0);
-//    ellipse(shp.outsideVerts[i][0], 
-//    shp.outsideVerts[i][1],10,10);
-//  }
-//  
-//  float[] lerped = shp.getLerpedVert(mouseX*1.f/width,
-//  shp.outsideVerts);
-//  stroke(0);
-//  ellipse(lerped[0],lerped[1],10,10);
-scale(4*mouseY*1.f/height);
-//strokeWeight(.1);
-noStroke();
-fill(0);
-shp.draw();
+  pushMatrix();
+  scale(4*mouseY*1.f/height);
+  triShp.draw();
+  popMatrix();
   
-
+  pushMatrix();
+  translate(100,100);
+  scale(4*mouseY*1.f/height);
+  circShp.draw();
+  popMatrix();
 }
 
 void drawRepeatCircs()
