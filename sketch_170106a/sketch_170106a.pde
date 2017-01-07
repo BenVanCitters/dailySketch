@@ -1,15 +1,21 @@
-ShapeHole triShp;// = new ShapeHole();
+ShapeHole triShp;
 ShapeHole circShp;
 ShapeHole sqrShp;
+
 void setup()
 {
-  size(500,500,P2D);
-  float[][] outsideVerts = createCircShape(200,4);
+  size(500,500,OPENGL);
   
-  triShp = new ShapeHole(outsideVerts,createCircShape(100,3),1000);
-  sqrShp = new ShapeHole(outsideVerts,createCircShape(100,4),1000);
-  circShp = new ShapeHole(outsideVerts,createCircShape(100,1000),1000);
+  triShp = new ShapeHole(createCircShape(50*3,4),createCircShape(25*3,3),1000);
+  triShp.setColor(color(0,255,0));
+  
+  sqrShp = new ShapeHole(createCircShape(60*3.5,4),createCircShape(40*3.5,4),1000);
+  sqrShp.setColor(color(255,0,0));
+  
+  circShp = new ShapeHole(createCircShape(50*5,4),createCircShape(30*5,1000),1000);
+  circShp.setColor(color(0,0,255));
 }
+
 //radius-based vertex creator helper function
 float[][] createCircShape(float radius, int vertCount)
 {
@@ -26,32 +32,32 @@ float[][] createCircShape(float radius, int vertCount)
 }
 void draw()
 {
-  background(255);
-  translate(width/2,height/2);
-  pushMatrix();
-  scale(4*mouseY*1.f/height);
-  triShp.draw();
-  popMatrix();
-  
-  pushMatrix();
-  translate(100,100);
-  scale(4*mouseY*1.f/height);
-  circShp.draw();
-  popMatrix();
+  //oscillating background color 
+  float tm = millis()/800.f;
+  background(255*(1+sin(tm*.9 +1))/2,
+             255*(1+sin(tm*.5 +3))/2,
+             255*(1+sin(tm*.1 +7))/2);
+
+    drawRepeatTris(triShp,70*3,new float[]{-20,20});
+    drawRepeatTris(sqrShp,70*3.5,new float[]{37,41});
+    drawRepeatTris(circShp,70*5,new float[]{17,-13});
+    println("frameRate: " + frameRate);
 }
 
-void drawRepeatCircs()
+void drawRepeatTris(ShapeHole s, float w, float[] offs)
 {
   float tm = millis()/1000.f;
-  int eCount = 10;
-  float shapeSpacing = width*1.f/eCount;
+  int eCount = (int)(width/w) + 1;
+  float shapeSpacing = w;
+  float[] offset = {tm*offs[0]%shapeSpacing,tm*offs[1]%shapeSpacing};
   for(int i = -1; i < eCount+1; i++)
   {
     for(int j =-1; j < eCount+1; j++)
     {
-      float[] offset = {tm*20%shapeSpacing,tm*20%shapeSpacing};
-      float shapeW = shapeSpacing*.5;
-      ellipse(i*shapeSpacing+offset[0], j*shapeSpacing+offset[1],shapeW,shapeW);
+      pushMatrix();
+        translate(i*shapeSpacing+offset[0], j*shapeSpacing+offset[1]);
+        s.draw();
+      popMatrix();
     }
-  } 
+  }
 }

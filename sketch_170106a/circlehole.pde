@@ -23,8 +23,12 @@ class ShapeHole
 
     shape.endShape();
     shape.setFill(color(0));
-    println("endShape");
  } 
+  
+  void setColor(int clr)
+  {
+    shape.setFill(color(clr));
+  }
   
   void draw()
   {
