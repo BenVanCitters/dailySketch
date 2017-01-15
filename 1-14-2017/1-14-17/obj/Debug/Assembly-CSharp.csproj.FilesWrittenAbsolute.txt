@@ -1,0 +1,17 @@
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/UnityEngine.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/UnityEditor.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/UnityEngine.PlaymodeTestsRunner.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/UnityEngine.Analytics.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/UnityEngine.HoloLens.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/UnityEngine.VR.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/Mono.Cecil.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/Unity.DataContract.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/admin/Documents/Processing/dailySketch/1-14-2017/1-14-17/Temp/bin/Debug/Mono.Cecil.Mdb.dll
