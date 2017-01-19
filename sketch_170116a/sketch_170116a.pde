@@ -1,6 +1,6 @@
 void setup()
 {
-  size(500, 500);
+  size(720, 720);
   background(0);
 }
 
@@ -19,7 +19,7 @@ float mouseXNum = mouseX*3.f/width;
 float mouseYNum = mouseY*1.f/width;
   for (int i = 0; i <18400; i++)
   {
-    float initialSz = (1.f/3.f)*(width/2.f);
+    float initialSz = (2.f/3.f)*(width/2.f);
     float pos[] = {
       0, 0
     };
