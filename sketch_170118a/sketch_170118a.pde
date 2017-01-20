@@ -8,10 +8,10 @@ void setup()
 void draw()
 {
   float tm = millis()/1000.f;
-  float borderMargin = 9;
+  float borderMargin = 1;
   tmp.beginDraw();
   tmp.translate(tmp.width/2,tmp.height/2);
-  tmp.rotate(.01);//.05*cos(tm/10));
+  tmp.rotate(.05*cos(tm/10));
   tmp.translate(-tmp.width/2,-tmp.height/2);
   tmp.image(g,borderMargin,
   borderMargin,
@@ -20,9 +20,9 @@ void draw()
   tmp.endDraw();
   
   background(random(255),random(255),random(255));
-//  translate(width/2,height/2);
-//  rotate(.05*cos(tm/10));
-//  translate(-width/2,-height/2);
+  translate(width/2,height/2);
+  rotate(.05*cos(tm/10));
+  translate(-width/2,-height/2);
   image(tmp,borderMargin,
   borderMargin,
   width-2*borderMargin,
