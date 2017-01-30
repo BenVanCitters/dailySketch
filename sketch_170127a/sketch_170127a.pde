@@ -74,19 +74,31 @@ void draw() {
 //float zScale = mouseY*1.f/height;
 //scale(1,1,zScale);
 float[] mousePos = {mouseX,mouseY,0};
+float powerSin = 1;//sin(tm*5);
   for(int i = 0; i < scanPoints.length; i++)
   {
     float[] mForce = {-mousePos[0]+scanPoints[i].targPos[0],
                       -mousePos[1]+scanPoints[i].targPos[1],
                       -mousePos[2]+scanPoints[i].targPos[2]};
-    float mDist = dist(0,0,0,mForce[0],mForce[1],mForce[2])/10;
+                      
+    float mDist = dist(0,0,0,mForce[0],mForce[1],mForce[2]);
+    float fNorm[]={mForce[0]/mDist,mForce[1]/mDist,mForce[2]/mDist};
+    fNorm = new float[]{fNorm[1],fNorm[0],0};
+    float sinD = sin(mDist/20)*350/(mDist*.5);
+    mDist/=10;
     mDist += random(-.1,.1);
     mForce[0] /= mDist; mForce[1] /= mDist; mForce[2] /= mDist;
-    mForce[0] *= 15; 
-    mForce[1] *= 15; 
-    mForce[2] *= 15;
+    mForce[0] *= 9*powerSin; 
+    mForce[1] *= 9*powerSin; 
+    mForce[2] *= 9*powerSin;
+    fNorm[0] *=sinD;
+    fNorm[1] *=sinD;
+    fNorm[2] *=sinD;
+    mForce[0] +=fNorm[0]; 
+    mForce[1] += fNorm[1]; 
+    mForce[2] +=fNorm[2];
     scanPoints[i].vel[0] += mForce[0]; 
-    scanPoints[i].vel[1] += mForce[1]; 
+    scanPoints[i].vel[1] += mForce[1];
     scanPoints[i].vel[2] += mForce[2];
     scanPoints[i].update(0);
     

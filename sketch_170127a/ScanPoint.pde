@@ -31,8 +31,8 @@ class ScanPoint
     pos[0] += vel[0];
     pos[1] += vel[1];
     pos[2] += vel[2];
-    vel[0]*=.58;vel[1]*=.58;vel[2]*=.58;
-    acc[0]*=.3;acc[1]*=.3;acc[2]*=.3;
+    vel[0]*=.68;vel[1]*=.68;vel[2]*=.68;
+    acc[0]*=.0;acc[1]*=.0;acc[2]*=.0;
   }
   
   
