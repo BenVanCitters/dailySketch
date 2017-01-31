@@ -8,10 +8,12 @@ void draw()
 {
   background(255);
   fill(0);
-  float cW = 20;
+  int cW = 50;
   int circlesPerRow = (int)(width/cW);
   int circlesPerCol = (int)(height/cW);
-  int x = cW*(millis()/50)%circlesPerRow;
-  int y = (millis()/50)/
-  ellipse(x,cW,cW,cW);
+  
+  int timePerCircle = 90;
+  int x = (millis()/timePerCircle) % circlesPerRow;
+  int y = ((millis()/(timePerCircle*circlesPerRow))%circlesPerCol);
+  ellipse(cW*(.5+x),cW*(.5+y),cW,cW);
 }

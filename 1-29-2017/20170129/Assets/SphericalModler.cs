@@ -11,7 +11,7 @@ public class SphericalModler : MonoBehaviour
 
 	//there are two waves that can be applied to and modify the surface of the spere
 	//there is no reason that these have to be the only two waves, but I cannot decide 
-	//on a way to easily make any number of them in the editor...
+	//on a approach to easily make ANY number of them in the editor...
 
 	//set of vars exposed to create waves parallel to the 'latitude'
 	// of the sphere
@@ -75,6 +75,11 @@ public class SphericalModler : MonoBehaviour
 				//add uvs so that we can texture the mesh if we want
 				uvs[vIndex] = new Vector2(j*1.0f/thetaDivs,i*1.0f/phiDivs);
 				//create a vertex 
+				//
+				//optimization alert: since the only thing that changes here is the radius
+				//(when the number of divisions stays the same) we could cache these numbers
+				// and use a shader to create and apply the variations in radius and compute 
+				// the normals.
 				vectors[vIndex++] = new Vector3(radius*Mathf.Sin(phi)*Mathf.Cos(theta),
 												radius*Mathf.Sin(phi)*Mathf.Sin(theta),
 												radius*Mathf.Cos(phi));				
