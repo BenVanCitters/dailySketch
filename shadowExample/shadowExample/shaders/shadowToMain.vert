@@ -1,9 +1,13 @@
-//#version 330 core
+
+precision highp float;
+
 varying vec4 shadowPos;
 uniform mat4 lightVPMat;
+attribute vec4 position;
+uniform mat4 modelViewProjectionMatrix;
 
 void main()
 {
-    shadowPos = lightVPMat * gl_Vertex;
-    gl_Position   = gl_ModelViewProjectionMatrix * gl_Vertex;
+    shadowPos = lightVPMat * position;
+    gl_Position   = modelViewProjectionMatrix * position;
 }

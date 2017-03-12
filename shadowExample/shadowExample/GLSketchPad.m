@@ -72,6 +72,8 @@
 -(void)initGL
 {
     [EAGLContext setCurrentContext:self.glContext];
+    
+    [self createShadowShaderProg];
     self.framebufferName = 0;
     glGenFramebuffers(1, &_framebufferName);
     glBindFramebuffer(GL_FRAMEBUFFER, self.framebufferName);
@@ -91,7 +93,21 @@
     }
 }
 
+-(void)createShadowShaderProg
+{
+    NSString *fragPath = [[NSBundle mainBundle] pathForResource:@"shadowToMain"
+                                                         ofType:@"frag"];
+    NSString *fragShaderCode = [NSString stringWithContentsOfFile:fragPath
+                                                     encoding:NSUTF8StringEncoding error:nil];
     
+    NSString *vertPath = [[NSBundle mainBundle] pathForResource:@"shadowToMain"
+                                                         ofType:@"vert"];
+    NSString *vertShaderCode = [NSString stringWithContentsOfFile:vertPath
+                                                     encoding:NSUTF8StringEncoding error:nil];
+    
+    GLuint tn = createVertFragShaderProg(fragShaderCode, vertShaderCode);
+}
+
 #pragma mark -
 #pragma mark GLKViewDelegate
 #pragma mark -

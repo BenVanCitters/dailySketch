@@ -67,9 +67,13 @@ GLuint compileShader(NSString* string, GLenum type)
         
         NSString* s = [NSString stringWithCString:log encoding:NSUTF8StringEncoding];
         free(log);
-        NSLog(@"%@",s);
+        NSLog(@"Shader failed to compile with description: %@",s);
         glDeleteShader(shadername);
         return -1;
+    }
+    else
+    {
+        NSLog(@"shader source: %d compiled successfully",shadername);
     }
     return shadername;
 }
@@ -107,9 +111,13 @@ GLuint createVertFragShaderProg(NSString* fragSrc, NSString* vertSrc)
         //Use the infoLog as you see fit.
         NSString* s = [NSString stringWithCString:log encoding:NSUTF8StringEncoding];
         free(log);
-        NSLog(@"%@",s);
+        NSLog(@"Shader failed to link with description: %@",s);
         //In this simple program, we'll just leave
         return -1;
+    }
+    else
+    {
+        NSLog(@"shader progam: %d linked successfully",prog);
     }
     
     //Always detach shaders after a successful link.
