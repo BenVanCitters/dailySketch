@@ -1,48 +1,43 @@
 //
-//  glHelpers.h
+//  glHelpers.m
 //  shadowExample
 //
 //  Created by Ben Van Citters on 3/2/17.
 //  Copyright © 2017 Algorithms & Beauty. All rights reserved.
 //
-@import GLKit;
-
-#ifndef glHelpers_h
-#define glHelpers_h
-
-//-(void)printFrameBufferStatus:(GLenum)fbStatus
+#include "glHelpers.h"
 
 void printFrameBufferStatus(GLenum fbStatus)
 {
-//    int fbStatus = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if(fbStatus == GL_FRAMEBUFFER_COMPLETE)
     {
         NSLog(@"GL_FRAMEBUFFER_COMPLETE: the specified framebuffer is complete." );
-//        }else if(fbStatus == GL_FRAMEBUFFER_UNDEFINED)
-//        {
-//            NSLog(@"GL_FRAMEBUFFER_UNDEFINED: the specified framebuffer is the default read or draw framebuffer, but the default framebuffer does not exist." );
-        }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT)
-        {
-            NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT: the framebuffer attachment points are framebuffer incomplete. " );
-        }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT)
-        {
-            NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT: the framebuffer does not have at least one image attached to it. " );
-//        }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER)
-//        {
-//            NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER: the value of GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE is GL_NONE for any color attachment point(s) named by GL_DRAW_BUFFERi. " );
-//        }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER)
-//        {
-//            NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER: GL_READ_BUFFER is not GL_NONE and the value of GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE is GL_NONE for the color attachment point named by GL_READ_BUFFER. " );
-        }else if(fbStatus == GL_FRAMEBUFFER_UNSUPPORTED)
-        {
-            NSLog(@"GL_FRAMEBUFFER_UNSUPPORTED: the combination of internal formats of the attached images violates an implementation-dependent set of restrictions. " );
-//        }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE)
-//        {
-//            NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE: the value of GL_RENDERBUFFER_SAMPLES is not the same for all attached renderbuffers; if the value of GL_TEXTURE_SAMPLES is the not same for all attached textures; or, if the attached images are a mix of renderbuffers and textures, the value of GL_RENDERBUFFER_SAMPLES does not match the value of GL_TEXTURE_SAMPLES. " );
-//        }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE)
-//        {
-//            NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE: if the value of GL_TEXTURE_FIXED_SAMPLE_LOCATIONS is not the same for all attached textures; or, if the attached images are a mix of renderbuffers and textures, the value of GL_TEXTURE_FIXED_SAMPLE_LOCATIONS is not GL_TRUE for all attached textures. " );
-        }
+    }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT)
+    {
+        NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT: the framebuffer attachment points are framebuffer incomplete. " );
+    }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT)
+    {
+        NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT: the framebuffer does not have at least one image attached to it. " );
+    }else if(fbStatus == GL_FRAMEBUFFER_UNSUPPORTED)
+    {
+        NSLog(@"GL_FRAMEBUFFER_UNSUPPORTED: the combination of internal formats of the attached images violates an implementation-dependent set of restrictions. " );
+    }
+    //    int fbStatus = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    //        }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE)
+    //        {
+    //            NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE: the value of GL_RENDERBUFFER_SAMPLES is not the same for all attached renderbuffers; if the value of GL_TEXTURE_SAMPLES is the not same for all attached textures; or, if the attached images are a mix of renderbuffers and textures, the value of GL_RENDERBUFFER_SAMPLES does not match the value of GL_TEXTURE_SAMPLES. " );
+    //        }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE)
+    //        {
+    //            NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE: if the value of GL_TEXTURE_FIXED_SAMPLE_LOCATIONS is not the same for all attached textures; or, if the attached images are a mix of renderbuffers and textures, the value of GL_TEXTURE_FIXED_SAMPLE_LOCATIONS is not GL_TRUE for all attached textures. " );
+    //        }else if(fbStatus == GL_FRAMEBUFFER_UNDEFINED)
+    //        {
+    //            NSLog(@"GL_FRAMEBUFFER_UNDEFINED: the specified framebuffer is the default read or draw framebuffer, but the default framebuffer does not exist." );
+    //        }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER)
+    //        {
+    //            NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER: the value of GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE is GL_NONE for any color attachment point(s) named by GL_DRAW_BUFFERi. " );
+    //        }else if(fbStatus == GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER)
+    //        {
+    //            NSLog(@"GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER: GL_READ_BUFFER is not GL_NONE and the value of GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE is GL_NONE for the color attachment point named by GL_READ_BUFFER. " );
 }
 
 GLuint compileShader(NSString* string, GLenum type)
@@ -129,5 +124,3 @@ GLuint createVertFragShaderProg(NSString* fragSrc, NSString* vertSrc)
     
     return prog;
 }
-
-#endif /* glHelpers_h */

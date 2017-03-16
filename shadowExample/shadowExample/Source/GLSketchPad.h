@@ -7,6 +7,7 @@
 //
 
 #import "MyGLView.h"
+#import "BVShader.h"
 
 @import GLKit;
 
@@ -16,4 +17,5 @@
 @property NSTimer* updateTimer;
 
 @property GLuint framebufferName;
+@property BVShader* shadowShader;
 @end

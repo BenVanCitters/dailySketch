@@ -11,35 +11,41 @@
 		84643E8F1E74EEC40003A472 /* shadowToBuffer.vert in Resources */ = {isa = PBXBuildFile; fileRef = 84643E8B1E74EEC40003A472 /* shadowToBuffer.vert */; };
 		84643E901E74EEC40003A472 /* shadowToMain.frag in Resources */ = {isa = PBXBuildFile; fileRef = 84643E8C1E74EEC40003A472 /* shadowToMain.frag */; };
 		84643E911E74EEC40003A472 /* shadowToMain.vert in Resources */ = {isa = PBXBuildFile; fileRef = 84643E8D1E74EEC40003A472 /* shadowToMain.vert */; };
-		84C360F31E5D406A00C4DDDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C360F21E5D406A00C4DDDA /* main.m */; };
-		84C360F61E5D406A00C4DDDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C360F51E5D406A00C4DDDA /* AppDelegate.m */; };
+		84643E9B1E7636290003A472 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84643E941E7636290003A472 /* AppDelegate.m */; };
+		84643E9C1E7636290003A472 /* GLSketchPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 84643E971E7636290003A472 /* GLSketchPad.m */; };
+		84643E9D1E7636290003A472 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84643E981E7636290003A472 /* main.m */; };
+		84643E9E1E7636290003A472 /* MyGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84643E9A1E7636290003A472 /* MyGLView.m */; };
+		847BABC81E790E19001A099B /* BVShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 847BABC71E790E19001A099B /* BVShader.m */; };
+		847BABCA1E7A674A001A099B /* glHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 847BABC91E7A674A001A099B /* glHelpers.m */; };
 		84C360FC1E5D406A00C4DDDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C360FA1E5D406A00C4DDDA /* Main.storyboard */; };
 		84C360FE1E5D406A00C4DDDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84C360FD1E5D406A00C4DDDA /* Assets.xcassets */; };
 		84C361011E5D406A00C4DDDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C360FF1E5D406A00C4DDDA /* LaunchScreen.storyboard */; };
 		84C361091E5D443700C4DDDA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C361081E5D443700C4DDDA /* GLKit.framework */; };
-		84C361141E655B0B00C4DDDA /* GLSketchPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C361131E655B0B00C4DDDA /* GLSketchPad.m */; };
-		84C361171E65602300C4DDDA /* MyGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C361161E65602300C4DDDA /* MyGLView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		84643E881E680FDE0003A472 /* glHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glHelpers.h; sourceTree = "<group>"; };
 		84643E8A1E74EEC40003A472 /* shadowToBuffer.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shadowToBuffer.frag; sourceTree = "<group>"; };
 		84643E8B1E74EEC40003A472 /* shadowToBuffer.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shadowToBuffer.vert; sourceTree = "<group>"; };
 		84643E8C1E74EEC40003A472 /* shadowToMain.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shadowToMain.frag; sourceTree = "<group>"; };
 		84643E8D1E74EEC40003A472 /* shadowToMain.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shadowToMain.vert; sourceTree = "<group>"; };
+		84643E931E7636290003A472 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		84643E941E7636290003A472 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		84643E951E7636290003A472 /* glHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glHelpers.h; sourceTree = "<group>"; };
+		84643E961E7636290003A472 /* GLSketchPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSketchPad.h; sourceTree = "<group>"; };
+		84643E971E7636290003A472 /* GLSketchPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLSketchPad.m; sourceTree = "<group>"; };
+		84643E981E7636290003A472 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		84643E991E7636290003A472 /* MyGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGLView.h; sourceTree = "<group>"; };
+		84643E9A1E7636290003A472 /* MyGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGLView.m; sourceTree = "<group>"; };
+		847BABC61E790E19001A099B /* BVShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVShader.h; sourceTree = "<group>"; };
+		847BABC71E790E19001A099B /* BVShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVShader.m; sourceTree = "<group>"; };
+		847BABC91E7A674A001A099B /* glHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = glHelpers.m; sourceTree = "<group>"; };
 		84C360EE1E5D406A00C4DDDA /* shadowExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shadowExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C360F21E5D406A00C4DDDA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		84C360F41E5D406A00C4DDDA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		84C360F51E5D406A00C4DDDA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		84C360FB1E5D406A00C4DDDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84C360FD1E5D406A00C4DDDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84C361001E5D406A00C4DDDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84C361021E5D406A00C4DDDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84C361081E5D443700C4DDDA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		84C361121E655B0B00C4DDDA /* GLSketchPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSketchPad.h; sourceTree = "<group>"; };
-		84C361131E655B0B00C4DDDA /* GLSketchPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLSketchPad.m; sourceTree = "<group>"; };
-		84C361151E65602300C4DDDA /* MyGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGLView.h; sourceTree = "<group>"; };
-		84C361161E65602300C4DDDA /* MyGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGLView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +60,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		84643E891E74EEC40003A472 /* shaders */ = {
+		84643E891E74EEC40003A472 /* shaderSource */ = {
 			isa = PBXGroup;
 			children = (
 				84643E8A1E74EEC40003A472 /* shadowToBuffer.frag */,
@@ -62,7 +68,26 @@
 				84643E8C1E74EEC40003A472 /* shadowToMain.frag */,
 				84643E8D1E74EEC40003A472 /* shadowToMain.vert */,
 			);
+			name = shaderSource;
 			path = shaders;
+			sourceTree = "<group>";
+		};
+		84643E921E7636290003A472 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				84643E931E7636290003A472 /* AppDelegate.h */,
+				84643E941E7636290003A472 /* AppDelegate.m */,
+				84643E951E7636290003A472 /* glHelpers.h */,
+				847BABC91E7A674A001A099B /* glHelpers.m */,
+				84643E961E7636290003A472 /* GLSketchPad.h */,
+				84643E971E7636290003A472 /* GLSketchPad.m */,
+				84643E981E7636290003A472 /* main.m */,
+				84643E991E7636290003A472 /* MyGLView.h */,
+				84643E9A1E7636290003A472 /* MyGLView.m */,
+				847BABC61E790E19001A099B /* BVShader.h */,
+				847BABC71E790E19001A099B /* BVShader.m */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 		84C360E51E5D406900C4DDDA = {
@@ -85,19 +110,13 @@
 		84C360F01E5D406A00C4DDDA /* shadowExample */ = {
 			isa = PBXGroup;
 			children = (
-				84643E891E74EEC40003A472 /* shaders */,
-				84C360F41E5D406A00C4DDDA /* AppDelegate.h */,
-				84C360F51E5D406A00C4DDDA /* AppDelegate.m */,
+				84643E921E7636290003A472 /* Source */,
+				84643E891E74EEC40003A472 /* shaderSource */,
 				84C360FA1E5D406A00C4DDDA /* Main.storyboard */,
 				84C360FD1E5D406A00C4DDDA /* Assets.xcassets */,
 				84C360FF1E5D406A00C4DDDA /* LaunchScreen.storyboard */,
 				84C361021E5D406A00C4DDDA /* Info.plist */,
 				84C360F11E5D406A00C4DDDA /* Supporting Files */,
-				84C361121E655B0B00C4DDDA /* GLSketchPad.h */,
-				84C361131E655B0B00C4DDDA /* GLSketchPad.m */,
-				84C361151E65602300C4DDDA /* MyGLView.h */,
-				84C361161E65602300C4DDDA /* MyGLView.m */,
-				84643E881E680FDE0003A472 /* glHelpers.h */,
 			);
 			path = shadowExample;
 			sourceTree = "<group>";
@@ -184,10 +203,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84C360F61E5D406A00C4DDDA /* AppDelegate.m in Sources */,
-				84C361171E65602300C4DDDA /* MyGLView.m in Sources */,
-				84C360F31E5D406A00C4DDDA /* main.m in Sources */,
-				84C361141E655B0B00C4DDDA /* GLSketchPad.m in Sources */,
+				847BABCA1E7A674A001A099B /* glHelpers.m in Sources */,
+				84643E9C1E7636290003A472 /* GLSketchPad.m in Sources */,
+				84643E9B1E7636290003A472 /* AppDelegate.m in Sources */,
+				84643E9D1E7636290003A472 /* main.m in Sources */,
+				847BABC81E790E19001A099B /* BVShader.m in Sources */,
+				84643E9E1E7636290003A472 /* MyGLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

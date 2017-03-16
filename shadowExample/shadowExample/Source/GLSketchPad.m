@@ -95,17 +95,10 @@
 
 -(void)createShadowShaderProg
 {
-    NSString *fragPath = [[NSBundle mainBundle] pathForResource:@"shadowToMain"
-                                                         ofType:@"frag"];
-    NSString *fragShaderCode = [NSString stringWithContentsOfFile:fragPath
-                                                     encoding:NSUTF8StringEncoding error:nil];
-    
-    NSString *vertPath = [[NSBundle mainBundle] pathForResource:@"shadowToMain"
-                                                         ofType:@"vert"];
-    NSString *vertShaderCode = [NSString stringWithContentsOfFile:vertPath
-                                                     encoding:NSUTF8StringEncoding error:nil];
-    
-    GLuint tn = createVertFragShaderProg(fragShaderCode, vertShaderCode);
+    self.shadowShader = [[BVShader alloc] initWithFrag:@"shadowToMain"
+                                                  vert:@"shadowToMain"
+                                               context:self.glContext];
+    [self.shadowShader printUniforms];
 }
 
 #pragma mark -
@@ -125,7 +118,21 @@
     //re-bind the normal/main framebuffer
     glBindFramebuffer(GL_FRAMEBUFFER, oldFboId);
     
-    [self performSelector:@selector(setNeedsDisplay) withObject:self.glView afterDelay:1/60.f];
+    [self performSelector:@selector(setNeedsDisplay)
+               withObject:self.glView afterDelay:1/60.f];
+}
+
+-(void)renderScene
+{
+    GLKMatrix4 camMatrix = GLKMatrix4MakeLookAt(0, 0, -100, //eye
+                                                0, 0, 0, //focus
+                                                0, 1, 0); //"up"
+    GLKMatrix4 light1Matrix = GLKMatrix4MakeLookAt(0, 0, -100,
+                                                   0, 0, 0,
+                                                   0, 1, 0);
+    
+//    glFrustrum(m);
+    
 }
 
 -(float)rndF
@@ -133,7 +140,5 @@
     u_int32_t t = 70000;
     return arc4random_uniform(t)*1.f/t;
 }
-
-
 
 @end
