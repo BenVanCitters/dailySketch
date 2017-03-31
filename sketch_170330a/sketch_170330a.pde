@@ -23,33 +23,13 @@ void draw()
   noFill();
   strokeWeight(15);
   int[] indecies = getStartEndIndex();
-  beginShape();
-  if(indecies[0] < indecies[1])
-  {
-    for(int i = indecies[0]; i < indecies[1]; i++)
-    {
-      vertForIndex(i);
-    } 
-  }
-  else
-  {
-    for(int i = indecies[0]; i < spots.size(); i++)
-    {
-      vertForIndex(i);
-    }
-    for(int i = 0; i < indecies[1]; i++)
-    {
-      vertForIndex(i);
-    }
-  }
-  endShape();
-  float[][] points = getPoints();
+
+  ArrayList<Spot> points = getPoints();
   stroke(255);
   beginShape();
-  for(int i = 0; i < points.length; i++)
+  for(Spot s : points)
   {
-//    printPos(points[i]);
-    vertex(points[i][0],points[i][1],points[i][2]);
+    vertForSpot(s);
   }
   endShape();
 }
@@ -59,7 +39,13 @@ void vertForIndex(int index)
   Spot s = spots.get(index);
       stroke(s.c);
 //    fill(s.c);
-//    vertex(s.pos[0],s.pos[1],s.pos[2]);
+    vertex(s.pos[0],s.pos[1],s.pos[2]);
+}
+
+void vertForSpot(Spot s)
+{
+  stroke(s.c);
+  vertex(s.pos[0],s.pos[1],s.pos[2]);
 }
 
 int[] getStartEndIndex()
@@ -74,8 +60,7 @@ int[] getStartEndIndex()
                    (int)(maxIndex*((normedTime + .01)%1.0))};
 }
 
-
-float[][] getPoints()
+ArrayList<Spot> getPoints()
 {
   float secs = 10;
   float curTime = millis()/(secs*1000);
@@ -88,16 +73,16 @@ float[][] getPoints()
   int resultSize = 200;
   float tDiff = (normedEndT-normedStartT)/resultSize;
 //  println("tDiff: " + tDiff);
-  float result[][] = new float[resultSize][3]; 
+  ArrayList<Spot> result = new ArrayList<Spot>();
   for(int i = 0; i < resultSize; i++)
   {
-     result[i] = getPosForT(normedStartT + tDiff*i);
+     result.add(getSpotForT(normedStartT + tDiff*i));
   }
 //  println("sz: " + result.length);
   return result;
 }
 
-float[] getPosForT(float t)
+Spot getSpotForT(float t)
 {
   t = t % 1.f;
   int startIndex = (int)(t*spots.size());
@@ -107,23 +92,21 @@ float[] getPosForT(float t)
   float endPct = endIndex*1.f/ spots.size();
   float pctDiff = 1.f/ spots.size();
   float interT = (t - startPct)/pctDiff;
-//  println(t);
+
   float[] startPos = spots.get(startIndex).pos;
-//  println("start");
-//  printPos(startPos);
+
   float[] endPos = spots.get(endIndex).pos;
-//  println("end");
-//  printPos(endPos);
+
   float[] diff = new float[]{endPos[0]-startPos[0],
                              endPos[1]-startPos[1],
                              endPos[2]-startPos[2]};
-// println("diff");
-//printPos(diff);
-  float[] result = new float[] {diff[0]*interT+startPos[0],
+  Spot result = new Spot();
+  result.pos = new float[] {diff[0]*interT+startPos[0],
                                 diff[1]*interT+startPos[1],
                                 diff[2]*interT+startPos[2]};
-//println("result");
-//printPos(result);
+  result.c = lerpColor(spots.get(startIndex).c,
+                       spots.get(endIndex).c,
+                       interT);
   return result;  
 }
 
