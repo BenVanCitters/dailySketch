@@ -48,7 +48,7 @@ void draw()
   beginShape();
   for(int i = 0; i < points.length; i++)
   {
-    printPos(points[i]);
+//    printPos(points[i]);
     vertex(points[i][0],points[i][1],points[i][2]);
   }
   endShape();
@@ -85,7 +85,7 @@ float[][] getPoints()
  
   int maxIndex = spots.size();
   
-  int resultSize = 2;
+  int resultSize = 200;
   float tDiff = (normedEndT-normedStartT)/resultSize;
 //  println("tDiff: " + tDiff);
   float result[][] = new float[resultSize][3]; 
