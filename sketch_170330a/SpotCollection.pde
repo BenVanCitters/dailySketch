@@ -2,9 +2,10 @@ class SpotCollection
 {
   ArrayList<Spot> spots = new ArrayList<Spot>(); 
   float shapeSZ[] = {300,300,300};
-
-  SpotCollection(int count)
+float strokeW = 25;
+  SpotCollection(int count, float[] sz)
   {
+    shapeSZ[0] = sz[0]; shapeSZ[1] = sz[1];shapeSZ[2] = sz[2];
     addPoints(count);
   }
   
@@ -19,19 +20,21 @@ class SpotCollection
     } 
   }
   
-  void draw()
+  void draw(float tm, int divs, float pct)
   {
     pushMatrix();
-    float tm = millis()/1000.f; 
+     
     rotateX(tm);
     translate(-shapeSZ[0]/2,-shapeSZ[1]/2,-shapeSZ[2]/2);
     noFill();
-    strokeWeight(15);
+    strokeWeight(strokeW);
   
-    for(int i = 0; i < 8; i++)
+    float strokeLen = pct/divs;
+    float strokeBlank = .001;
+    for(int i = 0; i < divs; i++)
     {
-      float start = i*.01;
-      float end = (i+1)*.01 - .001;
+      float start = i*strokeLen;
+      float end = (i+1)*strokeLen - strokeBlank;
       ArrayList<Spot> points = getPoints(60, 
                                          new float[]{start,end},
                                          tm/4);
