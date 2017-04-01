@@ -1,130 +1,54 @@
-ArrayList<Spot> spots = new ArrayList<Spot>(); 
-float depth = 300;
-float shapeSZ[] = {300,300,300};
+SpotCollection s;
+SpotCollection s1;
+SpotCollection s2;
+SpotCollection s3;
+SpotCollection s4;
 void setup()
 {
   size(600,600,P3D);
   
-  for(int i = 0; i < 550; i++)
-  {
-    Spot s = new Spot();
-    s.pos = new float[]{random(shapeSZ[0]),random(shapeSZ[1]),random(shapeSZ[2])};
-    s.c = color(random(256),random(256),random(256));
-    spots.add(s);
-  }
+  s = new SpotCollection(550, new float[]{300,300,300});
+  
+  float[] sz = new float[]{100,100,100};
+  s1 = new SpotCollection(100,sz );
+  s1.strokeW = 5;
+  s2 = new SpotCollection(100, sz);
+  s2.strokeW = 5;  
+  s3 = new SpotCollection(100, sz);
+  s3.strokeW = 5;
+  s4 = new SpotCollection(100, sz);
+  s4.strokeW = 5;
 }
 
 void draw()
 {
   background(0);
-  translate(width/2,height/2,depth/2);
-  rotateX(millis()/1000.f);
-  translate(-shapeSZ[0]/2,-shapeSZ[1]/2,-shapeSZ[2]/2);
-  noFill();
-  strokeWeight(15);
-  int[] indecies = getStartEndIndex();
-  beginShape();
-  if(indecies[0] < indecies[1])
-  {
-    for(int i = indecies[0]; i < indecies[1]; i++)
-    {
-      vertForIndex(i);
-    } 
-  }
-  else
-  {
-    for(int i = indecies[0]; i < spots.size(); i++)
-    {
-      vertForIndex(i);
-    }
-    for(int i = 0; i < indecies[1]; i++)
-    {
-      vertForIndex(i);
-    }
-  }
-  endShape();
-  float[][] points = getPoints();
-  stroke(255);
-  beginShape();
-  for(int i = 0; i < points.length; i++)
-  {
-//    printPos(points[i]);
-    vertex(points[i][0],points[i][1],points[i][2]);
-  }
-  endShape();
-}
-
-void vertForIndex(int index)
-{
-  Spot s = spots.get(index);
-      stroke(s.c);
-//    fill(s.c);
-//    vertex(s.pos[0],s.pos[1],s.pos[2]);
-}
-
-int[] getStartEndIndex()
-{
-  float secs = 10;
-  float curTime = millis()/(secs*1000);
-  float moddedTime = curTime % secs;
-  float normedTime = moddedTime/secs; 
-  int maxIndex = spots.size();
+  float tm = millis()/1000.f;
+  pushMatrix();
+  translate(width/2,height/2,200);
+  s.draw(tm, 8,.09);
+  popMatrix();
   
-  return new int[]{(int)(maxIndex*normedTime), 
-                   (int)(maxIndex*((normedTime + .01)%1.0))};
-}
-
-
-float[][] getPoints()
-{
-  float secs = 10;
-  float curTime = millis()/(secs*1000);
-  float moddedTime = curTime % secs;
-  float normedStartT = moddedTime/secs;
-  float normedEndT = (moddedTime+.1)/secs; 
- 
-  int maxIndex = spots.size();
+  tm*=3;
+  pushMatrix();
+  translate(width/3,height/3,200);
+  s1.draw(tm, 2,.3);
+  popMatrix();
   
-  int resultSize = 200;
-  float tDiff = (normedEndT-normedStartT)/resultSize;
-//  println("tDiff: " + tDiff);
-  float result[][] = new float[resultSize][3]; 
-  for(int i = 0; i < resultSize; i++)
-  {
-     result[i] = getPosForT(normedStartT + tDiff*i);
-  }
-//  println("sz: " + result.length);
-  return result;
-}
+  pushMatrix();
+  translate(2*width/3,height/3,200);
+  s2.draw(tm, 2,.3);
+  popMatrix();
 
-float[] getPosForT(float t)
-{
-  t = t % 1.f;
-  int startIndex = (int)(t*spots.size());
-  int endIndex = (startIndex + 1) % spots.size();
- 
-  float startPct = startIndex*1.f/ spots.size();
-  float endPct = endIndex*1.f/ spots.size();
-  float pctDiff = 1.f/ spots.size();
-  float interT = (t - startPct)/pctDiff;
-//  println(t);
-  float[] startPos = spots.get(startIndex).pos;
-//  println("start");
-//  printPos(startPos);
-  float[] endPos = spots.get(endIndex).pos;
-//  println("end");
-//  printPos(endPos);
-  float[] diff = new float[]{endPos[0]-startPos[0],
-                             endPos[1]-startPos[1],
-                             endPos[2]-startPos[2]};
-// println("diff");
-//printPos(diff);
-  float[] result = new float[] {diff[0]*interT+startPos[0],
-                                diff[1]*interT+startPos[1],
-                                diff[2]*interT+startPos[2]};
-//println("result");
-//printPos(result);
-  return result;  
+  pushMatrix();
+  translate(2*width/3,2*height/3,200);
+  s3.draw(tm, 2,.3);
+  popMatrix();
+  
+  pushMatrix();
+  translate(width/3,2*height/3,200);
+  s4.draw(tm, 2,.3);
+  popMatrix();
 }
 
 void printPos(float[] pos)
