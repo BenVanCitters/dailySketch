@@ -15,6 +15,7 @@ class baddie extends character
     pushMatrix();
     translate(pos[0], pos[1]);
     pushStyle();
+    noStroke();
     rectMode(CENTER);
     if(isDead)
     {
