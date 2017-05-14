@@ -1,0 +1,1 @@
+void draw(){beginShape();for(int i=0;i<50;i++){vertex(random(width),random(height));}endShape();}
