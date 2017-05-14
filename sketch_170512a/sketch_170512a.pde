@@ -1,7 +1,7 @@
 PGraphics p;
 void setup()
 {
-  size(800,800, P3D);
+  size(700,700, P3D);
   p = createGraphics(width,height,P3D);
 }
 
@@ -53,7 +53,7 @@ void drawGeo(float tm)
 
 float[] getVertForNormXY(float xpct, float ypct, float tm)
 {
-  float tubePct = (1+sin(3+tm*.0345))/2.f;
+  float tubePct = (1+sin(3+tm*.2345))/2.f;
 //  float wrapPct = (1+sin(tm/6.7))/2.f;
   float[] tubePos = {0,0,0};
   float[] wrapPos = {0,0,0};
@@ -111,4 +111,3 @@ void drawStripes(float tm)
   }
   p.endDraw();
 }
-

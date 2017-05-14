@@ -9,15 +9,30 @@ class partSys
 {
   ArrayList<part> parts = new ArrayList<part>(); 
   float spd = 80;
-  float[][] vels = new float[][]{{spd,0},{0,spd},{-spd,0},{0,-spd}};
+  float[][] vels;
  
  //constructor. create a bunch of particles at the start
  partSys()
  {
+   updateVels();
    for(int i= 0; i < 100; i++)
    {
      createParticle();
    }
+ }
+ 
+ void updateVels()
+ {
+   int velSize = 4;//(int)(3 + 4*(1+sin(millis()/10000.f))/2);
+   vels = new float[velSize][2];
+   
+ for(int i = 0; i < velSize; i++)
+ {
+   float curTheta = i*TWO_PI/velSize;
+   vels[i][0] = spd*cos(curTheta);
+   vels[i][1] = spd*sin(curTheta);
+ }
+// {{spd,0},{0,spd},{-spd,0},{0,-spd}};
  }
  
  //create and add a particle to the system
@@ -43,6 +58,7 @@ class partSys
  //
  void update(float dt)
  {
+   updateVels();
    //create an array to hold the 'dead' particles
    ArrayList<part> dead = new ArrayList<part>();
    for(part p : parts)
