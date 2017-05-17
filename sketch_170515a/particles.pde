@@ -28,7 +28,7 @@ class particles
      rect(0,0,10,10);
      popMatrix();
    }
-   bloodBuffer.fill(255,255,255,5);
+   bloodBuffer.fill(255,5);
    bloodBuffer.rect(0,0,bloodBuffer.width,bloodBuffer.height);
 //   bloodBuffer.filter(BLUR);
    bloodBuffer.endDraw();
@@ -40,7 +40,7 @@ class particles
      translate(p.pos[0],p.pos[1]);
      noStroke();
      fill(0,0,0);
-     ellipse(0,0,20,20);
+     ellipse(0,0,40,40);
      popMatrix();
    }
  }
@@ -84,7 +84,7 @@ class particles
      p.vel[1]+=grav*dt;
      float[] newPos = {p.pos[0] + p.vel[0]*dt,
                        p.pos[1] + p.vel[1]*dt};
-     if(newPos[0] > width || newPos[0] < 0 || newPos[1] > height || newPos[1] < 0)
+     if(newPos[0] > width || newPos[0] < 0 || newPos[1] > height )//|| newPos[1] < 0
      {deadExplo.add(p); }
 
      p.pos[0] = newPos[0]; p.pos[1] = newPos[1];
@@ -116,8 +116,8 @@ class particles
      float randRadian = random(TWO_PI);
      par.vel = new float[]{p.vel[0]+power*cos(randRadian),
                            p.vel[1]+power*sin(randRadian)};
-     par.pos[0] = p.pos[0]+cos(randRadian)*random(10); 
-     par.pos[1] = p.pos[1]+sin(randRadian)*random(10);
+     par.pos[0] = p.pos[0]+cos(randRadian)*random(30); 
+     par.pos[1] = p.pos[1]+sin(randRadian)*random(30);
      shraps.add(par);
    }
  }
@@ -134,9 +134,11 @@ class PrimParts extends part
 {
   int state = 0; //0 flying 1 waiting to explode
  float time;
+ float rot = random(TWO_PI);
+ float rotSpd = random(1);
  void draw(){}
  void update(float dt)
- { time -= dt;}
+ { time -= dt; rot+= rotSpd*dt; }
  
 }
 
