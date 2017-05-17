@@ -1,6 +1,6 @@
 void setup()
 {
-  size(500,500,P3D);
+  size(720,720,P3D);
 }
 
 void draw()
@@ -11,12 +11,12 @@ void draw()
   
   directionalLight(200, 0,255,
   0, -1, 0);
-  float radius = 150;
-  int divs = 50;
-  float radiansPerDiv = TWO_PI/divs;
+  float radius = 250;
+//  int divs = 50;
+//  float radiansPerDiv = TWO_PI/divs;
   noFill();
-  translate(width/2,height/2);
-  rotateX(HALF_PI/2);
+  translate(width/2,height/2.5);
+  rotateX(-HALF_PI/3);
 //  beginShape();
 //  for(int i = 0; i< divs; i++)
 //  {
@@ -35,7 +35,7 @@ void draw()
   float helixRadWidth = .10;//.03 + .08*(1+sin(millis()/1000.f))/2;
   float helixStartRad = millis()/70.f;
   
-  float helixRad = 70;
+  float helixRad = 90;
   float lastHelixPos[] = {0,0,0};
   for(int i = 0; i< helixDivs; i++)
   {
