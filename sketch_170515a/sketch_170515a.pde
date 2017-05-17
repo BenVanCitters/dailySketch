@@ -2,7 +2,7 @@ particles p;
 
 void setup()
 {
-  size(700,700,P2D);
+  size(displayWidth,700,P2D);
   p = new particles();
 }
 

@@ -6,7 +6,7 @@ class particles
  PGraphics bloodBuffer;
  particles()
  {
-   bloodBuffer = createGraphics(width/8,height/8,P2D);
+   bloodBuffer = createGraphics(width,height,P2D);
  }
  void draw()
  {
@@ -20,15 +20,15 @@ class particles
      bloodBuffer.pushMatrix();
      bloodBuffer.scale(xscale);
      bloodBuffer.translate(p.pos[0],p.pos[1]);
-     bloodBuffer.ellipse(0,0,5,5);
+     bloodBuffer.ellipse(0,0,10,10);
      bloodBuffer.popMatrix();
-     pushMatrix();
-     translate(p.pos[0],p.pos[1]);
-     fill(128,128,0);
-     rect(0,0,10,10);
-     popMatrix();
+//     pushMatrix();
+//     translate(p.pos[0],p.pos[1]);
+//     fill(128,128,0);
+//     rect(0,0,10,10);
+//     popMatrix();
    }
-   bloodBuffer.fill(255,5);
+   bloodBuffer.fill(255,2);
    bloodBuffer.rect(0,0,bloodBuffer.width,bloodBuffer.height);
 //   bloodBuffer.filter(BLUR);
    bloodBuffer.endDraw();
@@ -40,7 +40,7 @@ class particles
      translate(p.pos[0],p.pos[1]);
      noStroke();
      fill(0,0,0);
-     ellipse(0,0,40,40);
+//     ellipse(0,0,40,40);
      popMatrix();
    }
  }
@@ -62,12 +62,13 @@ class particles
      { newPos[0] *= -1; p.vel[0]*=-1; collided = true;}
      
      if(newPos[1] > height)
-     { newPos[1] = newPos[1]-(newPos[1]-width); p.vel[1]*=-1; collided = true;}
+     { newPos[1] = newPos[1]-(newPos[1]-height); p.vel[1]*=-1; collided = true;}
      
      if(newPos[1] < 0)
      { newPos[1] *= -1; p.vel[1]*=-1; collided = true;}
+     
      if(collided)
-        p.time*=.01;
+        p.time*=.51;
      p.pos[0] = newPos[0]; p.pos[1] = newPos[1];
      p.update(dt);
      if(p.time < 0)
@@ -97,7 +98,7 @@ class particles
      PrimParts p = new PrimParts();
      p.time = 2+random(4);
      p.pos = new float[]{random(width),height-1};
-     float randomPow = 700+random(200);
+     float randomPow = 1000+random(200);
      float randRadian = (PI + HALF_PI) + (random(1.5)-.25); 
      p.vel = new float[]{randomPow*cos(randRadian),
                          randomPow*sin(randRadian)};
@@ -107,7 +108,7 @@ class particles
  
  void addExplo(PrimParts p)
  {
-   int count = 15 + (int)random(20);
+   int count = 95 + (int)random(20);
    for(int i = 0; i < count; i++)
    {
      float power = random(270);
