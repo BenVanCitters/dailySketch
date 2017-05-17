@@ -7,7 +7,7 @@ void draw()
 {
   background(0);
   lights();
- 
+ ambientLight(0,0,0);
 //  stroke(255);
 //  strokeWeight(2);
 //  noFill();
@@ -21,7 +21,7 @@ void draw()
 
 void drawTorus()
 {
-  int diameterSegments = 20;
+  int diameterSegments = 200;
   float radius = 120*1.5; 
   float secondRad = 100*1.5;
   int secondDiamSegs = 5;
@@ -35,13 +35,13 @@ void drawTorus()
     beginShape(TRIANGLE_STRIP);
     for(int j = 0; j < diameterSegments; j++)
     {
-      if(random(1)>.8)
-      { 
-        stroke(255);
-        strokeWeight(2);
-        noFill();
-      }
-      else
+//      if(random(1)>.8)
+//      { 
+//        stroke(255);
+//        strokeWeight(2);
+//        noFill();
+//      }
+//      else
       {
         noStroke();
         fill(100);
