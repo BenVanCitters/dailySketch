@@ -1,5 +1,5 @@
-int hCount = 10;
-int vCount = 10;
+int hCount = 15;
+int vCount = 15;
 int sides = 6;
 int vertCount = hCount*vCount*sides;
 
@@ -7,7 +7,7 @@ float[][] positions = new float[vertCount][3];
 float[][] normalizeVerts = new float[vertCount][3];
 float[][] shownVerts = new float[vertCount][3];
 int[][] triangles = new int[sides*2*(hCount-1)*(vCount-1)][3];
-int groupCount = 6;
+int groupCount = 2;
 mLight[] lights = new mLight[groupCount];
 float[][] groupOffSets = {{0,0,1},{0,0,-1},{1,0,0},{-1,0,0},{0,1,0},{0,-1,0}};
 ArrayList<ArrayList<int[]>> tris = new ArrayList<ArrayList<int[]>>();
@@ -160,6 +160,7 @@ void draw()
 {
   float tm = millis()/1000.f;
   processVerts();
+  colorMode(RGB, 255);
   background(180,50,200);
   pushMatrix();
   updateLights();
