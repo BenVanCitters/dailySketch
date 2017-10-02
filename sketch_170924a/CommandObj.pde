@@ -7,13 +7,23 @@ class CommandObj<T>
   { return null; }
 }
 
-
-
 class MathCommand<T> extends CommandObj
 {
   T val;
   T compute()
   { return null; }
+}
+
+class SinCommand extends MathCommand<Float>
+{
+  MathCommand mc;
+  public SinCommand(MathCommand c)
+  { mc = c; }
+  
+  Float compute()
+  { 
+    float f = (Float)mc.compute();
+    return sin(f); }
 }
 
 class FloatCommand extends MathCommand<Float>
@@ -24,6 +34,13 @@ class FloatCommand extends MathCommand<Float>
   Float compute()
   { return val; }
 }
+
+class TimeFloatCommand extends MathCommand<Float>
+{
+  Float compute()
+  { return millis()/1000.f; }
+}
+
 class IntCommand extends MathCommand<Integer>
 {
   public IntCommand(int min, int max)
