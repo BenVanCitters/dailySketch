@@ -6,8 +6,19 @@ class ArtCommand extends CommandObj
 
 class EllipseCommad extends ArtCommand
 {
-  FloatCommand x,y,w,h;
+  MathCommand x,y,w,h;
 
+  public EllipseCommad(MathCommand _x, MathCommand _y, 
+                       MathCommand _w, MathCommand _h)
+  {
+    x = _x; y = _y;
+    w = _w; h = _h;
+    children.add(x);
+    children.add(y);
+    children.add(w);
+    children.add(h);
+  }
+  
   public EllipseCommad()
   {
     x = new FloatCommand(0,width);
@@ -21,17 +32,26 @@ class EllipseCommad extends ArtCommand
   }  
   void doTheBiz()
   { 
-    ellipse(x.compute(),
-            y.compute(),
-            w.compute(),
-            h.compute());
+    ellipse((Float)x.compute(),
+            (Float)y.compute(),
+            (Float)w.compute(),
+            (Float)h.compute());
   }
 }
 
 class RectangleCommad extends ArtCommand
 {
-  FloatCommand x,y,w,h;
-
+  MathCommand x,y,w,h;
+  public RectangleCommad(FloatCommand _x, FloatCommand _y, 
+                       FloatCommand _w, FloatCommand _h)
+  {
+    x = _x; y = _y;
+    w = _w; h = _h;
+    children.add(x);
+    children.add(y);
+    children.add(w);
+    children.add(h);
+  }
   public RectangleCommad()
   {
     x = new FloatCommand(0,width);
@@ -45,16 +65,16 @@ class RectangleCommad extends ArtCommand
   }  
   void doTheBiz()
   { 
-    rect(x.compute(),
-         y.compute(),
-         w.compute(),
-         h.compute());
+    rect((Float)x.compute(),
+         (Float)y.compute(),
+         (Float)w.compute(),
+         (Float)h.compute());
   }
 }
 
 class Translate2DCommand extends ArtCommand
 {
-  FloatCommand x,y;
+  MathCommand x,y;
 
   public Translate2DCommand()
   {
@@ -65,13 +85,14 @@ class Translate2DCommand extends ArtCommand
   }  
   void doTheBiz()
   { 
-    translate(x.compute(),y.compute());
+    translate((Float)x.compute(),
+              (Float)y.compute());
   }
 }
 
 class Rotate2DCommad extends ArtCommand
 {
-  FloatCommand angle;
+  MathCommand angle;
 
   public Rotate2DCommad()
   {
@@ -81,6 +102,6 @@ class Rotate2DCommad extends ArtCommand
   }  
   void doTheBiz()
   { 
-    rotate(angle.compute());
+    rotate((Float)angle.compute());
   }
 }
