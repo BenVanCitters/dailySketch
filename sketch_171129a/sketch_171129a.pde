@@ -13,8 +13,10 @@ void draw()
   float curDist = .01;
   int sz = 1000;
   float t = millis()/1000.f;
-  float lenModulator = (1+sin(2+t*.00002))/2.f;
+  float lenModulator = (1+cos(t*.02))/2.f;
   float radModulator = (1+sin(11+t*.041))/2.f;
+  
+  float multToFinish = pow((width/2)/curDist,(1.f/sz));
   
   strokeWeight(1);
   for(int i = 0; i < sz; i++)
@@ -29,6 +31,6 @@ void draw()
     startpt[0] = e[0];
     startpt[1] = e[1];
     curRad += PI/2.f * (.6+radModulator);
-    curDist *= 1+.03*lenModulator;
+    curDist *= multToFinish;//*(.99+.01*lenModulator);
   }
 }
