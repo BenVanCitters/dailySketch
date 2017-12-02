@@ -72,10 +72,15 @@ float modZ(float current, float amt[], int divs, int cycleDur)
   int divSpacing = cycleDur/divs;
   float cur = 0;
   int mod = (frameCount)%cycleDur;
-  
+   float sum  = 0;
+   for(int i = 0; i < divs-1; i++)
+  { 
+    sum += amt[i];
+  }
+  amt[divs-1] = -sum;
   for(int i = 0; i < divs; i++)
   {
-    cur += amt[i];
+    
     current += (mod == divSpacing*i) ? amt[i] : 0;
   }
   return current;
