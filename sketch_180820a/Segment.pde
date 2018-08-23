@@ -61,7 +61,6 @@ class Segment
       return b;
     }
     if( b[0] == other.b[0] && b[1] == other.b[1] ){
-      
       return b;
     }
     //no match found
