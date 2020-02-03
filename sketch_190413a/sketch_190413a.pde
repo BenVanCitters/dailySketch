@@ -7,8 +7,8 @@ void setup()
 {
   MyClass mc = new MyClass();
   PVector p = new PVector();
-  printClassStuff(mc);
-  //printClassStuff(p);
+  //printClassStuff(mc);
+  printClassStuff(p);
   
 }
 
