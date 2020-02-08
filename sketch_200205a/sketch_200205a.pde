@@ -15,7 +15,7 @@ void draw()
   scale(50);
   fill(255);
   noStroke();
-  rotateX(mouseX/100.f);
-  rotateY(mouseY/100.f);
+  rotateY(mouseX/100.f);
+  rotateX(mouseY/100.f);
   bshape.draw();
 }
