@@ -5,6 +5,7 @@ void setup()
 {
   size(500,500);
   setupStartVecs();
+  background(0);
 }
 
 void setupStartVecs()
@@ -19,15 +20,14 @@ void setupStartVecs()
   {
     int u = i%w;
     int v = i/w;
-    startPoss[i] = new float[]{5*(u*1.f/w - .51),
-                               5*(v*1.f/h - .51),
+    startPoss[i] = new float[]{2*(u*1.f/w - .5),
+                               2*(v*1.f/h - .5),
                                -1};
     startDirs[i] = new float[]{startPoss[i][0]-eyePos[0],
                                startPoss[i][1]-eyePos[1],
                                startPoss[i][2]-eyePos[2]};  
-    startDirs[i] = getNormalized(startDirs[i]);
-    //startDirs[i] = new float[]{0,0,1};  
-    
+    //startDirs[i] = getNormalized(startDirs[i]);
+    //startDirs[i] = new float[]{0,0,1};      
   }
 }
 
@@ -35,11 +35,12 @@ float[][] getTriPoints()
 {
   float[][] triangle = new float[3][3];
   float ofs = millis()/1000.f;
+  float r = .2;
   for(int i = 0; i < 3; i++)
   {
     float angle = ofs+i*TWO_PI/3.f;
-    float r = .2;
-    triangle[i] = new float[]{r*cos(angle),r*sin(angle),3};
+    triangle[i] = new float[]{r*cos(angle),
+                              r*sin(angle),7};
   }
   return triangle;
 }
@@ -63,7 +64,17 @@ void draw()
     boolean gamLoc = (bgt[1] >= 0) && (bgt[1] <=1);
     boolean betLoc = (bgt[0] >= 0) && (bgt[0] <=1-bgt[1]);
     boolean all = tLoc && gamLoc && betLoc;
-    pixels[i] = gamLoc && betLoc ? onColor : offColor;
+    //pixels[i] = gamLoc && betLoc ? onColor : offColor;
+    float[] abc = new float[]{bgt[0],bgt[1],(1-bgt[0]-bgt[1])};
+    //pixels[i] =offColor;
+    float lim = .6;
+    if((abc[0] > lim || abc[1] > lim || abc[2] > lim) && 
+        (abc[0] <1 && abc[1] <1 && abc[2]<1))
+      pixels[i] =onColor;
+    
+    //if(gamLoc && betLoc)
+    //  pixels[i] =onColor;
+    
   }
   updatePixels();
   stroke(255,0,0);
