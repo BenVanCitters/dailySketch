@@ -25,28 +25,48 @@ void setupStartVecs()
     startDirs[i] = new float[]{startPoss[i][0]-eyePos[0],
                                startPoss[i][1]-eyePos[1],
                                startPoss[i][2]-eyePos[2]};  
-    startDirs[i] = getNormalized(startDirs[i]);
+    //startDirs[i] = getNormalized(startDirs[i]);
     //startDirs[i] = new float[]{0,0,1};  
     
   }
 }
 
-float[][] getTriPoints()
+float[][] getTriPoints(float ra, float sz)
 {
   float[][] triangle = new float[3][3];
-  float ofs = millis()/1000.f;
+  float ofs =0;//millis()/1000.f;
+
+
   for(int i = 0; i < 3; i++)
   {
-    float angle = ofs+i*TWO_PI/3.f;
-    float r = .2;
-    triangle[i] = new float[]{r*cos(angle),r*sin(angle),3};
+    float angle = ofs-i*TWO_PI/3.f;
+    triangle[i] = new float[]{sz*cos(angle),
+                              sz*sin(angle),
+                              3};
+  }
+  
+  float d = .5;
+  float[] p = {d*cos(ra),d*sin(ra),0};
+  for(int i = 0; i < 3; i++)
+  {
+    triangle[i][0] += p[0];
+    triangle[i][1] += p[1];
+    triangle[i][2] += p[2];
   }
   return triangle;
 }
 
 void draw()
 {
-  float[][] tri = getTriPoints();
+  int tricount = 5;
+    float ofs = 1;//millis()/1000.f;
+  float[][][] tris = new float[tricount][3][3];
+  float r = 10*mouseX*1.f/width;
+  println(r);
+  for(int i = 0; i <tricount; i++)
+  {
+    tris[i] = getTriPoints(i*TWO_PI/tricount+ofs,r);
+  }
   int onColor = color(255,255,255);
   int offColor = color(0,0,0);
   loadPixels();
@@ -54,16 +74,21 @@ void draw()
   {
     int x = i % width;
     int y = i/width;
-    float[] bgt = getTriRayIntersection(tri,startPoss[i],startDirs[i]);
-    if(x==mouseX && y == mouseY)
+    boolean anyHits = false;
+    for(int j = 0; j < tricount; j++)
     {
-      printVec(bgt);
+      float[] bgt = getTriRayIntersection(tris[j],startPoss[i],startDirs[i]);
+      //if(x==mouseX && y == mouseY)
+      //{
+      //  printVec(bgt);
+      //}
+      boolean tLoc = (bgt[2] > -1000) && (bgt[2] < 5000);
+      boolean gamLoc = (bgt[1] >= 0) && (bgt[1] <=1);
+      boolean betLoc = (bgt[0] >= 0) && (bgt[0] <=1-bgt[1]);
+      boolean all = tLoc && gamLoc && betLoc;
+      anyHits = (gamLoc && betLoc) || anyHits;
     }
-    boolean tLoc = (bgt[2] > -1000) && (bgt[2] < 5000);
-    boolean gamLoc = (bgt[1] >= 0) && (bgt[1] <=1);
-    boolean betLoc = (bgt[0] >= 0) && (bgt[0] <=1-bgt[1]);
-    boolean all = tLoc && gamLoc && betLoc;
-    pixels[i] = gamLoc && betLoc ? onColor : offColor;
+    pixels[i] = anyHits ? onColor : offColor;
   }
   updatePixels();
   stroke(255,0,0);
