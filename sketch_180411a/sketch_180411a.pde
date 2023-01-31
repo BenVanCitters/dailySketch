@@ -18,18 +18,20 @@ void daw()
     {
       pushMatrix();
       translate(i*w,j*h);
-      drawSq(w,h);
+      //int rCount = (int)((i*4)%(1+j));
+      int rCount = (int)(random(4));
+      drawSq(w,h,rCount);
       popMatrix();
     }
   }
 }
 
-void drawSq(float w,float h)
+void drawSq(float w,float h, int rCount)
 {
   //rect(0,0,5,5);
   noFill();
   translate(w/2,h/2);
-  float rCount = (int)(random(4));
+  
   rotate(rCount*HALF_PI);
   translate(-w/2,-h/2);
   arc(0,0,w*2,h*2,0,PI/2);
