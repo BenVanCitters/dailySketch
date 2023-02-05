@@ -1,20 +1,17 @@
 class GameBoard{
   public int bWidth = 50;
   public int bHeight = 50;
-  public CanBot cb;
   public Can cans[];
   public Wall walls[];
     
-  public GameBoard(CanBot canbot)
+  public GameBoard()
   {
-     cb = canbot;
   }
   
   public GameBoard(GameBoard gb)
   {
     this.bWidth = gb.bWidth;
     this.bHeight = gb.bHeight;
-    this.cb = gb.cb;
     this.cans = gb.cans.clone();
     this.walls = gb.walls.clone();
   }

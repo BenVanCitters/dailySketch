@@ -1,4 +1,4 @@
-class CanBot
+class CanBot implements Comparable<CanBot>
 {
   float exploredPct;
   float fitness;
@@ -30,5 +30,10 @@ class CanBot
   //3=go right
   //4=go down
    return actionMap[index]; 
+  }
+  
+  int compareTo(CanBot o)
+  {
+    return (int)(100*(o.fitness - fitness));
   }
 }

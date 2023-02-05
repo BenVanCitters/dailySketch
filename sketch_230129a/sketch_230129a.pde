@@ -3,20 +3,28 @@
  void setup()
  {
    size(500,500); 
-   int []actionMap = buildActionMap();
 
-   CanBot cb = new CanBot(actionMap);
-   GameBoard gb = new GameBoard(cb);
+   GameBoard gb = new GameBoard();
    gb.makeBorderWalls();
    gb.makeCans(100);
-   gs = new GameSim(gb);
+   gs = new GameSim();
    
-   gs.setup();
-   for(int i = 0; i < 1000; i++)
+   for(int j = 0; j < 100; j++)
    {
-     gs.interate();
+     int[] actionMap = buildActionMap();
+     CanBot cb = new CanBot(actionMap);
+     gs.setup(cb,gb);
+     for(int i = 0; i < 1000; i++)
+     {
+       gs.interate();
+     }
+     gs.endSim();
    }
-   gs.endSim();
+   ArrayList<CanBot> bots = gs.curGeneration;
+   for(CanBot c : bots)
+   {
+     println("fitness: " + c.fitness);
+   }
 }
 
 int[] buildActionMap()

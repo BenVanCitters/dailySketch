@@ -12,24 +12,23 @@ class GameSim
   int WALL = 1;
   int CAN = 2;
   
-  public GameSim(GameBoard gb)
+  public GameSim()
   {
-    board = gb;  
     curGeneration = new ArrayList<CanBot>();
   }
   
-  void setup()
+  void setup(CanBot cb, GameBoard gb)
   {
-    rboard = new int[board.bWidth][board.bHeight];
-    travelled = new boolean[board.bWidth][board.bHeight];
-    canBot = board.cb;
-    
+    board = gb;  
+    canBot = cb;    
     canBot.pos[0] = board.bWidth/2;
     canBot.pos[1] = board.bHeight/2;
     
-    //path = new ArrayList<int[]>();
-    //path.add(canBot.pos);
+    //the sim has a less object-oriented view of the world - three-state multidimensional array
+    rboard = new int[board.bWidth][board.bHeight];
+    travelled = new boolean[board.bWidth][board.bHeight];
     travelled[canBot.pos[0]][canBot.pos[1]] = true;
+    
     //clear the board
     for(int i = 0; i < board.bWidth; i++)
     {
@@ -60,7 +59,8 @@ class GameSim
     canBot.fitness = getFitnessScoreForBot(canBot);
     canBot.exploredPct = getPctAreaExplored();
     curGeneration.add(canBot);
-    println("curIteration: " + curIteration + ", canBot.fitness: " + canBot.fitness);
+    java.util.Collections.sort(curGeneration);
+    //println("curIteration: " + curIteration + ", canBot.fitness: " + canBot.fitness);
   }
   
   int getCurrentCanCount()
