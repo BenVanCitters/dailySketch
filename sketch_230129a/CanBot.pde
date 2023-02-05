@@ -1,5 +1,8 @@
 class CanBot
 {
+  float exploredPct;
+  float fitness;
+  
   int[] pos = new int[2];
   int cans;
   //0 = go up

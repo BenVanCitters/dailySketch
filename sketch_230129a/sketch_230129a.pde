@@ -10,13 +10,18 @@
    gb.makeBorderWalls();
    gb.makeCans(100);
    gs = new GameSim(gb);
-   gs.setup();
    
+   gs.setup();
+   for(int i = 0; i < 1000; i++)
+   {
+     gs.interate();
+   }
+   gs.endSim();
 }
 
 int[] buildActionMap()
 {
-  //0 = go up
+  //0 = go upfo
   //1=go left
   //2= pickup
   //3=go right

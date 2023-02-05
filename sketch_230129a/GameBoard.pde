@@ -50,9 +50,4 @@ class GameBoard{
       walls[startIndex] = new Wall(bWidth-1,i);
     }
   }
-  
-  void draw()
-  {
-    
-  }
 }
