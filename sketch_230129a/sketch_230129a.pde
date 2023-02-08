@@ -1,30 +1,48 @@
  GameSim gs;
  
- void setup()
- {
-   size(500,500); 
-
-   GameBoard gb = new GameBoard();
-   gb.makeBorderWalls();
-   gb.makeCans(100);
-   gs = new GameSim();
-   
-   for(int j = 0; j < 100; j++)
-   {
-     int[] actionMap = buildActionMap();
-     CanBot cb = new CanBot(actionMap);
-     gs.setup(cb,gb);
-     for(int i = 0; i < 1000; i++)
+void setup()
+{
+  size(500,500); 
+  
+  //create initial bots
+  int canBotCount = 500;
+  CanBot[] canBots = new CanBot[canBotCount];
+  for(int i = 0; i < canBotCount; i++)
+  {
+    int[] actionMap = buildActionMap();
+    canBots[i] = new CanBot(actionMap);
+  }
+ 
+    gs = new GameSim();
+    GameBoard gb = new GameBoard();
+    gb.makeBorderWalls();
+    gb.makeCans(100);
+  int genCount = 100;
+  for(int k = 0; k < genCount; k++)
+  {
+     
+    for(int j = 0; j < canBotCount; j++)
+    {
+      gs.setup(canBots[j],gb);
+      int iterationCount = 1000;
+      for(int i = 0; i < iterationCount; i++)
+      {
+        gs.interate();
+      }
+      gs.endSim();
+    }
+     ArrayList<CanBot> bots = gs.curGeneration;
+     for(CanBot c : bots)
      {
-       gs.interate();
+       //println("fitness: " + c.fitness);
      }
-     gs.endSim();
-   }
-   ArrayList<CanBot> bots = gs.curGeneration;
-   for(CanBot c : bots)
-   {
-     println("fitness: " + c.fitness);
-   }
+     CanBotOperations ops = new CanBotOperations();
+     ArrayList<CanBot> seleccted = ops.selectBots(gs.curGeneration);
+     CanBot[][] pairs = ops.getPairingsFromSelected( seleccted, gs.curGeneration.size() );
+     canBots = ops.getNewBotsFromPairings(pairs);
+     gs.setup(bots.get(0),gb);
+     println("gen " + k + ": fitness: " + bots.get(0).fitness);
+  }
 }
 
 int[] buildActionMap()
