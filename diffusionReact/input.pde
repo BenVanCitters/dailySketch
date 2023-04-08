@@ -27,7 +27,7 @@ void keyPressed()
       saveFrame("sreenCaptures/img-######.png");
       break;
    case 'r':
-
+          d.seed();
       break;
   }
 }
@@ -107,4 +107,3 @@ void controllerChange(int channel, int number, int value) {
       break;   
   } 
 }
-

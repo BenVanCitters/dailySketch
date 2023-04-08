@@ -9,11 +9,11 @@ class DifRec
                           
 int width; int height;                          
   int count = 0;
-  float k = .062;
+  float k = .059;
   float dA = 1.0f;
   float dB = .5f;
-  float f = .055f;
-  float dT = 1.1f;
+  float f = .034f;
+  float dT = 1.0f;
   public DifRec(int w, int h)
   {
     this.width = w;
@@ -33,8 +33,8 @@ int width; int height;
       int x = xy[0];
       int y = xy[1];
       boolean inMid = abs(renderTarget.width/2-x) < 5 && abs(renderTarget.width/2-y) < 5;
-      chemsLast[i][0] = 1;
-      chemsLast[i][1] = inMid? 1 : 0;
+      chemsLast[i][0] = random(1);
+      chemsLast[i][1] = random(1);
       chemsCur[i][0] = chemsLast[i][0];
       chemsCur[i][1] = chemsLast[i][1];
     }
@@ -96,7 +96,7 @@ int width; int height;
     {
       float a = chemsCur[i][0];
       float b = chemsCur[i][1];
-      b = abs(b -thresh) < .05 ? 255 : 0;
+      //b = abs(b -thresh) < .05 ? 255 : 0;
       renderTarget.pixels[i] = color(b,b,b,b);
 //      renderTarget.pixels[i] = color(255*a, 255*b,0);
     }

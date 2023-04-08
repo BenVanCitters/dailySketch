@@ -5,7 +5,7 @@ class BShape
   //array of <1,2,3> vertex indecies
   int[][] tris;
   int h_count = 5;
-  int w_count = 100000;
+  int w_count = 1000;
   float firstRadius = 400;
   float secondRadius = 80;
   float thirdRadius = 0;
@@ -16,8 +16,26 @@ class BShape
   float thirdRotCount = 13;
   //float fourthRotCount = 1;
 
-  public BShape()
+  public BShape(float firstRadius,
+  float secondRadius,
+  float thirdRadius,
+  float fourthRadius,
+
+  float firstRotCount,
+  float secondRotCount,
+  float thirdRotCount,  int h_count,
+  int w_count)
   {
+    
+   this.firstRadius =firstRadius;
+   this.secondRadius = secondRadius;
+   this.thirdRadius = thirdRadius;
+   this.fourthRadius = fourthRadius; //radius of solid
+
+   this.firstRotCount = firstRotCount;
+   this.secondRotCount = secondRotCount;
+   this.thirdRotCount = thirdRotCount;
+  
     tris = new int[ ( (h_count)*(w_count)*2 )][3];
     int tindex = 0;
     for(int i = 0; i < w_count; i++)

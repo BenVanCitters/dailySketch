@@ -1,5 +1,5 @@
 BShape2 bshape;
-String filepath = "C:/Users/vanci/Downloads/codingchallengeforfastradius/Moon.stl";
+String filepath = "C:/Users/vanci/Downloads/Sphericon.stl";
 
 void setup()
 {

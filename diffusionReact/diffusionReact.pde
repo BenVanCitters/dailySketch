@@ -6,8 +6,8 @@ DifRec d;
 void setup()
 {
   size(displayWidth,displayHeight,P2D);
-    initLPD8();
-  d = new DifRec(100,100);
+  initLPD8();
+  d = new DifRec(300,300);
 
 }
 
@@ -15,7 +15,7 @@ void draw()
 {
   background(0);
   long s = millis();
-  int count = 11;
+  int count = 1;
   for(int i = 0; i < count; i++)
   {
     d.update();  
